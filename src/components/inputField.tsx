@@ -19,6 +19,7 @@ const InputField: FC<Props> = ({
     <input
       type="text"
       placeholder="Search users"
+      aria-label="search-input"
       ref={inputRef}
       value={searchText}
       onChange={handleInputChange}

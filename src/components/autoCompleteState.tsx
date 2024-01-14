@@ -14,9 +14,9 @@ const AutoCompleteState = () => {
   useEffect(() => {
     (async () => {
       const filteredData = await FileteredData(debouncedInputValue);
-      if (filteredData) {
-        setSuggestions(filteredData);
-      }
+      if (!filteredData) return
+      
+      setSuggestions(filteredData);
       return filteredData;
     })();
 

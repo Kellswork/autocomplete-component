@@ -15,13 +15,14 @@ const SuggestionList: FC<Props> = ({
   showSuggestions,
   handleOnClick,
   selectedSuggestion,
-  searchText
+  searchText,
 }) => {
   if (showSuggestions) {
     return suggestions.length ? (
-      <ul className="suggestions">
+      <ul data-testid="suggestion-list" className="suggestions">
         {suggestions.map((suggestion, index) => (
           <li
+            data-testid={`suggestion-item-${index}`}
             className={
               selectedSuggestion === index ? "suggestion active" : "suggestion"
             }
@@ -33,7 +34,7 @@ const SuggestionList: FC<Props> = ({
         ))}
       </ul>
     ) : (
-      <div className="no-options">No options</div>
+      <div className="no-options" data-testid='no-options'>No options</div>
     );
   } else return null;
 };

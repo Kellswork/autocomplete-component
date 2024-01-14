@@ -22,7 +22,7 @@ function AutoComplete() {
 
   const handleOnClick = (event: React.MouseEvent<HTMLLIElement>) => {
     setShowSuggestions(false);
-    setSearchText(event.currentTarget.innerText);
+    if(event.currentTarget.textContent) setSearchText(event.currentTarget.textContent);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
