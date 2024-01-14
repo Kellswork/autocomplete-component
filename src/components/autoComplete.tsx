@@ -34,11 +34,11 @@ function AutoComplete() {
         type="text"
         value={searchText}
         onChange={handleInputChange}
+        onFocus={() =>  setShowSuggestions(true) }
         placeholder="Search users"
       />
       <SuggestionList
         suggestions={suggestions}
-        searchText={searchText}
         showSuggestions={showSuggestions}
         handleOnClick={handleOnClick}
       />
