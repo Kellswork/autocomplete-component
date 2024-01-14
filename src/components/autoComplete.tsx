@@ -23,6 +23,11 @@ function AutoComplete() {
     setShowSuggestions(true);
   };
 
+  const handleOnClick = (event: React.MouseEvent<HTMLLIElement>) => {
+    setShowSuggestions(false);
+    setSearchText(event.currentTarget.innerText);
+  };
+
   return (
     <div className="autocomplete-container">
       <input
@@ -35,6 +40,7 @@ function AutoComplete() {
         suggestions={suggestions}
         searchText={searchText}
         showSuggestions={showSuggestions}
+        handleOnClick={handleOnClick}
       />
     </div>
   );

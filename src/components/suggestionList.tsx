@@ -1,22 +1,24 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 import ResponseData from "../utils/type";
 
 interface Props {
   showSuggestions: boolean;
   searchText: string;
   suggestions: ResponseData[];
+  handleOnClick: (event: MouseEvent<HTMLLIElement>) => void;
 }
 
 const SuggestionList: FC<Props> = ({
   suggestions,
   showSuggestions,
   searchText,
+  handleOnClick
 }) => {
   if (showSuggestions && searchText) {
     return (suggestions.length) ? (
       <ul className="suggestions">
         {suggestions.map((suggestion) => (
-          <li key={suggestion.email}>{suggestion.name}</li>
+          <li className="suggestion" key={suggestion.email} onClick={handleOnClick}>{suggestion.name}</li>
         ))}
       </ul>
     ) : (
