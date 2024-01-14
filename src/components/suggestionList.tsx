@@ -1,10 +1,12 @@
 import { FC, MouseEvent } from "react";
 import ResponseData from "../utils/type";
+import { highlightMatch } from "../utils/helpers";
 
 interface Props {
   showSuggestions: boolean;
   selectedSuggestion: number;
   suggestions: ResponseData[];
+  searchText: string;
   handleOnClick: (event: MouseEvent<HTMLLIElement>) => void;
 }
 
@@ -13,6 +15,7 @@ const SuggestionList: FC<Props> = ({
   showSuggestions,
   handleOnClick,
   selectedSuggestion,
+  searchText
 }) => {
   if (showSuggestions) {
     return suggestions.length ? (
@@ -25,7 +28,7 @@ const SuggestionList: FC<Props> = ({
             key={suggestion.email}
             onClick={handleOnClick}
           >
-            {suggestion.name}
+            {highlightMatch(suggestion.name, searchText)}
           </li>
         ))}
       </ul>

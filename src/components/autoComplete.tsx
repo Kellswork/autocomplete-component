@@ -57,6 +57,7 @@ function AutoComplete() {
         showSuggestions={showSuggestions}
         handleOnClick={handleOnClick}
         selectedSuggestion={selectedSuggestion}
+        searchText={searchText}
       />
     </div>
   );
