@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ResponseData from "../utils/type";
 import { FileteredData } from "../utils/api";
+import { useDebounce } from "../utils/helpers";
 
 const AutoCompleteState = () => {
   const [searchText, setSearchText] = useState<string>("");
@@ -8,10 +9,11 @@ const AutoCompleteState = () => {
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState<number>(-1);
   const inputRef = useRef<HTMLInputElement>(null);
+  const debouncedInputValue = useDebounce(searchText, 300)
 
   useEffect(() => {
     (async () => {
-      const filteredData = await FileteredData(searchText);
+      const filteredData = await FileteredData(debouncedInputValue);
       if (filteredData) {
         setSuggestions(filteredData);
       }
@@ -35,7 +37,7 @@ const AutoCompleteState = () => {
     return () => {
       document.removeEventListener("click", handleFocusOut);
     };
-  }, [searchText]);
+  }, [debouncedInputValue]);
 
   return {
     searchText,

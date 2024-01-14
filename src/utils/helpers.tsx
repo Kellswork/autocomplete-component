@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 
 export function highlightMatch( suggestion: string, inputValue : string) {
   const index = suggestion.toLocaleLowerCase().indexOf(inputValue.toLocaleLowerCase());
@@ -14,4 +15,20 @@ export function highlightMatch( suggestion: string, inputValue : string) {
       {afterMatch}
     </>
   );
+}
+
+export function useDebounce(inputValue: string, delay: number) {
+  const [debouncedValue, setDebouncedValue] = useState(inputValue);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedValue(inputValue);
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [inputValue, delay]);
+
+  return debouncedValue;
 }
