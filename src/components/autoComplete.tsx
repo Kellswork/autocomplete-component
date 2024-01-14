@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import ResponseData from "../utils/type";
 import SuggestionList from "./suggestionList";
 import { FileteredData } from "../utils/api";
+import InputField from "./inputField";
 
 function AutoComplete() {
   const [searchText, setSearchText] = useState<string>("");
@@ -49,7 +50,6 @@ function AutoComplete() {
     setSearchText(event.currentTarget.innerText);
   };
 
-  
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
       case "ArrowUp":
@@ -70,14 +70,12 @@ function AutoComplete() {
 
   return (
     <div className="autocomplete-container">
-      <input
-        type="text"
-        ref={inputRef}
-        value={searchText}
-        onChange={handleInputChange}
-        onFocus={() => setShowSuggestions(true)}
-        placeholder="Search users"
-        onKeyDown={handleKeyDown}
+      <InputField
+        inputRef={inputRef}
+        searchText={searchText}
+        handleInputChange={handleInputChange}
+        handleFocus={() => setShowSuggestions(true)}
+        handleKeyDown={handleKeyDown}
       />
       <SuggestionList
         suggestions={suggestions}
