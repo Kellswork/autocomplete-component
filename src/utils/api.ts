@@ -6,7 +6,6 @@ export const fetchData = async () => {
       "https://jsonplaceholder.typicode.com/users"
     );
     const responseData = await response.json() as ResponseData[];
-    console.log(responseData);
     return responseData;
 
   } catch (error) {
@@ -17,7 +16,6 @@ export const fetchData = async () => {
 
 export const FileteredData = async ( inputValue: string) => {
   const responseData = await fetchData();
-  const result = responseData?.filter((user) =>
+  return responseData?.filter((user) =>
   user.name.toLowerCase().includes(inputValue.toLowerCase()))
-  return result;
 }

@@ -7,6 +7,7 @@ function AutoComplete() {
   const [searchText, setSearchText] = useState<string>("");
   const [suggestions, setSuggestions] = useState<ResponseData[]>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+  const [selectedSuggestion, setSelectedSuggestion] = useState<number>(-1);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -48,6 +49,25 @@ function AutoComplete() {
     setSearchText(event.currentTarget.innerText);
   };
 
+  
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    switch (event.key) {
+      case "ArrowUp":
+        selectedSuggestion > 0 && setSelectedSuggestion((prev) => prev - 1);
+        break;
+      case "ArrowDown":
+        selectedSuggestion < suggestions.length - 1 &&
+          setSelectedSuggestion((prev) => prev + 1);
+        break;
+      case "Enter":
+        if (selectedSuggestion >= 0) {
+          setShowSuggestions(false);
+          setSearchText(suggestions[selectedSuggestion].name);
+        }
+        break;
+    }
+  };
+
   return (
     <div className="autocomplete-container">
       <input
@@ -57,11 +77,13 @@ function AutoComplete() {
         onChange={handleInputChange}
         onFocus={() => setShowSuggestions(true)}
         placeholder="Search users"
+        onKeyDown={handleKeyDown}
       />
       <SuggestionList
         suggestions={suggestions}
         showSuggestions={showSuggestions}
         handleOnClick={handleOnClick}
+        selectedSuggestion={selectedSuggestion}
       />
     </div>
   );

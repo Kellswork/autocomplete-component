@@ -3,6 +3,7 @@ import ResponseData from "../utils/type";
 
 interface Props {
   showSuggestions: boolean;
+  selectedSuggestion: number;
   suggestions: ResponseData[];
   handleOnClick: (event: MouseEvent<HTMLLIElement>) => void;
 }
@@ -10,18 +11,27 @@ interface Props {
 const SuggestionList: FC<Props> = ({
   suggestions,
   showSuggestions,
-  handleOnClick
+  handleOnClick,
+  selectedSuggestion,
 }) => {
   if (showSuggestions) {
-    return (suggestions.length) ? (
+    return suggestions.length ? (
       <ul className="suggestions">
-        {suggestions.map((suggestion) => (
-          <li className="suggestion" key={suggestion.email} onClick={handleOnClick}>{suggestion.name}</li>
+        {suggestions.map((suggestion, index) => (
+          <li
+            className={
+              selectedSuggestion === index ? "suggestion active" : "suggestion"
+            }
+            key={suggestion.email}
+            onClick={handleOnClick}
+          >
+            {suggestion.name}
+          </li>
         ))}
       </ul>
     ) : (
       <div className="no-options">No options</div>
     );
-  } else return null
+  } else return null;
 };
 export default SuggestionList;
