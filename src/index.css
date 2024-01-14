@@ -5,4 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  box-sizing: border-box;
+  font-size: 16px;
+  background: rgb(248 250 252);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
