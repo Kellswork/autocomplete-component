@@ -1,4 +1,4 @@
-1. What is the difference between Component and PureComponent? Give an example where it might break my app.
+## 1. What is the difference between Component and PureComponent? Give an example where it might break my app.
 
 - A regular component is the base React component that renders whenever there is a change in its state or props, while Pure Components only re-render when the props or state actually changes.
 
@@ -14,7 +14,7 @@ Pure components in React can't be used with complex data structures or nested ob
 
 Context is a way of passing data from a parent component to any child component deep within its tree. It also causes each component that contains its context value to re-render when there is an update. On the other hand, ShouldComponentUpdate is used to determine if a component's state or props have changed before it can re-render. Since Context is not exactly passed as props, any changes to the context value could cause React to not re-render all the components that consume it due to ShouldComponentUpdate. This can lead to issues with the application's performance and cause the context data to become outdated.
 
-3. Describe 3 ways to pass information from a component to its PARENT.
+## 3. Describe 3 ways to pass information from a component to its PARENT.
 
 **Lifting state up**: You can pass data from a child component to a parent component by updating the state variable stored in the parent component inside the child component.
 Let's use an example to illustrate this. Say I have a parent component `ParentComponent.tsx` with a state variable and I create a `handleState` function to update the state variable. I pass this `handleState` function to the child component.
@@ -40,10 +40,10 @@ const ChildComponent = ({ handleState }) => {
 
 When the div is clicked, the parent component state will be updated.
 
-React provides a Context API hook that enables passing context data from a parent component to deeply nested children components. The `useContext` hook can be used by children components to consume the context data. Additionally, children comp`one`nts can update the context value using the provider's `set` function, similar to the `useState` hook.
+**useContext**: React provides a Context API hook that enables passing context data from a parent component to deeply nested children components. The `useContext` hook can be used by children components to consume the context data. Additionally, children comp`one`nts can update the context value using the provider's `set` function, similar to the `useState` hook.
 
 
-## 4. Give 2 ways to prevent components from re-rendering.
+## 4. Give two ways to prevent components from re-rendering.
 
 **useMemo**: This React hook is used for caching to minimize calculations between renders, a process known as memoization. It only re-renders the component if there's an update in the props.
 
@@ -72,7 +72,7 @@ const someFunctionalComponent = () => (
 
 - If you try to return more than one JSX element from a functional component, the app will break. To fix it, you can use the `Fragment` or `<></>` syntax.
 
-## 6. Give 3 examples of the HOC pattern.
+## 6. Give three examples of the HOC pattern.
 
 **Authentication and Authorization**
 
@@ -167,7 +167,7 @@ const asyncAwaitExample = () => {
 
 **setState** is a function in React that is used to update the state of a component. It takes in one argument which is the new state that you want to set.
 
-setState is an asynchronous function which means that when you call it and pass in an argument, it won't immediately update the state. Instead, it will save the updated state and update the DOM with the new state when the component is re-rendered.
+**setState** is an asynchronous function which means that when you call it and pass in an argument, it won't immediately update the state. Instead, it will save the updated state and update the DOM with the new state when the component is re-rendered.
 
 ## 9. List the steps needed to migrate a Class to a Function Component.
 
