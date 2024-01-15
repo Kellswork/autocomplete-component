@@ -1,5 +1,13 @@
 1. What is the difference between Component and PureComponent? Give an example where it might break my app.
 
+- A regular component is the base React component that renders whenever there is a change in its state or props, while Pure Components only re-render when the props or state actually changes.
+
+- A regular component doesn't have the `shouldComponentUpdate` method built in, while a Pure Component has the `shouldComponentUpdate` method built in and automatically implements it.
+
+**Where might the app break?**
+
+Pure components in React can't be used with complex data structures or nested objects. They only do a shallow comparison between the old and new states. If the two states are identical, even if the new state has changed, the component won't render the new state. This means that with complex data structures, the shallow comparison may not be able to detect changes in the state values.
+
 
 
 ## 2. Context + ShouldComponentUpdate might be dangerous. Why is that?
@@ -65,6 +73,48 @@ const someFunctionalComponent = () => (
 - If you try to return more than one JSX element from a functional component, the app will break. To fix it, you can use the `Fragment` or `<></>` syntax.
 
 ## 6. Give 3 examples of the HOC pattern.
+
+**Authentication and Authorization**
+
+```javascript
+const useAuth = (WrappedComponent) => {
+  return (props) => {
+    const isAuthenticated = checkAuthStatus();
+
+    if (isAuthenticated) {
+      return <WrappedComponent {...props} />;
+    } else {
+      return <Redirect to="/login" />;
+    }
+  };
+};
+```
+
+**Catching and Memoization**
+
+```javascript
+export const withMemo = (WrappedComponent) => {
+  return (props) => {
+    const memoizedValue = useMemo(() => expensiveComputation(props), [props])
+
+    return <WrappedComponent {...props} memoizedValue={memoizedValue} />;
+  };
+};
+```
+
+**Error Handling**
+
+```javascript
+const withErrorHandling = (WrappedComponent) => {
+  return (props) => {
+    return (
+      <ErrorBoundary>
+        <WrappedComponent {...props} />
+      </ErrorBoundary>
+    );
+  };
+};
+```
 
 
 ## 7. What's the difference in handling exceptions in promises, callbacks and async…await?
