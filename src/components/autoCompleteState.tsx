@@ -10,7 +10,7 @@ const AutoCompleteState = () => {
   const [selectedSuggestion, setSelectedSuggestion] = useState<number>(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const debouncedInputValue = useDebounce(searchText, 300)
-
+  
   useEffect(() => {
     (async () => {
       const filteredData = await FileteredData(debouncedInputValue);
