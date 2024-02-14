@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, LegacyRef } from "react";
+import React, { ChangeEvent, FC, LegacyRef, memo } from "react";
 
 interface Props {
   inputRef: LegacyRef<HTMLInputElement>;
@@ -29,4 +29,4 @@ const InputField: FC<Props> = ({
   );
 };
 
-export default InputField;
+export const MemoisedInputField = memo(InputField);

@@ -1,7 +1,7 @@
 import "./App.css";
-import { ChangeEvent, useMemo } from "react";
+import { ChangeEvent, useCallback, useMemo } from "react";
 import {MemoisedSuggestionList} from "./components/suggestionList";
-import InputField from "./components/inputField";
+import {MemoisedInputField} from "./components/inputField";
 import AutoCompleteState from "./components/autoCompleteState";
 import { filterList } from "./utils/helpers";
 
@@ -22,16 +22,16 @@ function App() {
     [suggestions, searchText]
   );
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.currentTarget.value);
     setShowSuggestions(true);
-  };
+  },[setSearchText, setShowSuggestions]);
 
-  const handleOnClick = (event: React.MouseEvent<HTMLLIElement>) => {
+  const handleOnClick = useCallback((event: React.MouseEvent<HTMLLIElement>) => {
     setShowSuggestions(false);
     if (event.currentTarget.textContent)
       setSearchText(event.currentTarget.textContent);
-  };
+  }, [setShowSuggestions, setSearchText]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
@@ -53,11 +53,11 @@ function App() {
 
   return (
     <div className="autocomplete-container">
-      <InputField
+      <MemoisedInputField
         inputRef={inputRef}
         searchText={searchText}
         handleInputChange={handleInputChange}
-        handleFocus={() => setShowSuggestions(true)}
+        handleFocus={useCallback(() => setShowSuggestions(true), [setShowSuggestions])}
         handleKeyDown={handleKeyDown}
       />
       <MemoisedSuggestionList
