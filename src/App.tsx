@@ -1,8 +1,9 @@
-import './App.css';
-import { ChangeEvent } from "react";
-import SuggestionList from "./components/suggestionList";
+import "./App.css";
+import { ChangeEvent, useMemo } from "react";
+import {MemoisedSuggestionList} from "./components/suggestionList";
 import InputField from "./components/inputField";
 import AutoCompleteState from "./components/autoCompleteState";
+import { filterList } from "./utils/helpers";
 
 function App() {
   const {
@@ -16,6 +17,11 @@ function App() {
     inputRef,
   } = AutoCompleteState();
 
+  const filterSuggestions = useMemo(
+    () => filterList(suggestions, searchText),
+    [suggestions, searchText]
+  );
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.currentTarget.value);
     setShowSuggestions(true);
@@ -23,7 +29,8 @@ function App() {
 
   const handleOnClick = (event: React.MouseEvent<HTMLLIElement>) => {
     setShowSuggestions(false);
-    if(event.currentTarget.textContent) setSearchText(event.currentTarget.textContent);
+    if (event.currentTarget.textContent)
+      setSearchText(event.currentTarget.textContent);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -32,13 +39,13 @@ function App() {
         selectedSuggestion > 0 && setSelectedSuggestion((prev) => prev - 1);
         break;
       case "ArrowDown":
-        selectedSuggestion < suggestions.length - 1 &&
+        selectedSuggestion < filterSuggestions.length - 1 &&
           setSelectedSuggestion((prev) => prev + 1);
         break;
       case "Enter":
         if (selectedSuggestion >= 0) {
           setShowSuggestions(false);
-          setSearchText(suggestions[selectedSuggestion].name);
+          setSearchText(filterSuggestions[selectedSuggestion].name);
         }
         break;
     }
@@ -53,8 +60,8 @@ function App() {
         handleFocus={() => setShowSuggestions(true)}
         handleKeyDown={handleKeyDown}
       />
-      <SuggestionList
-        suggestions={suggestions}
+      <MemoisedSuggestionList
+        suggestions={filterSuggestions}
         showSuggestions={showSuggestions}
         handleOnClick={handleOnClick}
         selectedSuggestion={selectedSuggestion}

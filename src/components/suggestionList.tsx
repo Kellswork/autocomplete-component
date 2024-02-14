@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from "react";
+import { FC, MouseEvent, memo } from "react";
 import ResponseData from "../utils/type";
 import { highlightMatch } from "../utils/helpers";
 
@@ -38,4 +38,5 @@ const SuggestionList: FC<Props> = ({
     );
   } else return null;
 };
-export default SuggestionList;
+// export default SuggestionList;
+export const MemoisedSuggestionList = memo(SuggestionList);
