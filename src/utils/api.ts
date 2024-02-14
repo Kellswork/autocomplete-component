@@ -14,8 +14,4 @@ export const fetchData = async () => {
 };
 
 
-export const FileteredData = async ( inputValue: string) => {
-  const responseData = await fetchData();
-  return responseData?.filter((user) =>
-  user.name.toLowerCase().includes(inputValue.toLowerCase()))
-}
+

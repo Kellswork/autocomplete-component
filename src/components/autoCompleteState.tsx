@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ResponseData from "../utils/type";
-import { FileteredData } from "../utils/api";
+import {  fetchData } from "../utils/api";
 import { useDebounce } from "../utils/helpers";
 
 const AutoCompleteState = () => {
@@ -13,11 +13,11 @@ const AutoCompleteState = () => {
   
   useEffect(() => {
     (async () => {
-      const filteredData = await FileteredData(debouncedInputValue);
-      if (!filteredData) return
+      const fetchedData = await fetchData();
+      if (!fetchedData) return
       
-      setSuggestions(filteredData);
-      return filteredData;
+      setSuggestions(fetchedData);
+      return fetchedData;
     })();
 
     const handleFocusOut = (event: globalThis.MouseEvent) => {

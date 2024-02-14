@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ResponseData from './type';
 
 export function highlightMatch( suggestion: string, inputValue : string) {
   const index = suggestion.toLocaleLowerCase().indexOf(inputValue.toLocaleLowerCase());
@@ -32,3 +33,6 @@ export function useDebounce(inputValue: string, delay: number) {
 
   return debouncedValue;
 }
+
+export const filterList = (list: ResponseData[], text: string) => list.filter((user) =>
+user.name.toLowerCase().includes(text.toLowerCase()))
