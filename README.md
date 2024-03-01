@@ -1,4 +1,4 @@
-# AutoComplete Component
+# Auto-complete Component
 
 
 ## Gest Started
