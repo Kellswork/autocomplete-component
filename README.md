@@ -1,6 +1,5 @@
 # AutoComplete Component
 
-I have created a private GitHub Repo for this Project.
 
 ## Gest Started
 
