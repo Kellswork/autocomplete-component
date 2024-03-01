@@ -23,9 +23,3 @@ These instructions will get you a copy of the project up and running on your loc
 Achieved 70% test coverage
 
 - run `npm test -- --coverage` to see test coverage
-
-## Additional updates that can be done to improve the feature for production.
-
-Intergrate Continous intergration with Circle CI or Travis CI for testing in Production.
-
-Add Cache to store previous search result and reduce ftech request call.
