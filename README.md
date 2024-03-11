@@ -14,7 +14,13 @@ Some user experience features include;
 - uses JavaScript fetch API to fetch suggestion list from an API endpoint.
 - errors are handled for better user experience.
 
-## Gest Started
+- ## Technologies Used:
+- React Js
+- TypeScript
+- Jest
+- React Testing Library
+
+## Get Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -31,7 +37,7 @@ These instructions will get you a copy of the project up and running on your loc
 - navigate to the folder location and cd into the folder `autocomplete-component`
 - in your terminal, run `npm test` and press `a` to run the tests
 
-## To Run Test Coverage
+## Run Test Coverage
 
 Achieved 70% test coverage
 
