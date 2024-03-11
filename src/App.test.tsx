@@ -7,21 +7,23 @@ import {
   within,
   cleanup,
 } from "@testing-library/react";
-import AutoComplete from "./autoComplete";
+import App from "./App";
+
+// import App from "./App";
 
 afterEach(() => {
   cleanup();
 });
 
-describe("AutoComplete Component", () => {
+describe("App Component", () => {
   it("renders the input box", () => {
-    render(<AutoComplete />);
+    render(<App />);
     const searchInput = screen.getByLabelText("search-input");
     expect(searchInput).toBeInTheDocument();
   });
 
   it("renders the suggestion list on input focus", async () => {
-    render(<AutoComplete />);
+    render(<App />);
 
     const suggestionList = screen.queryByTestId("suggestion-list");
     expect(suggestionList).not.toBeInTheDocument();
@@ -42,7 +44,7 @@ describe("AutoComplete Component", () => {
   });
 
   it("hides the suggestion list on click outside the text box", async () => {
-    render(<AutoComplete />);
+    render(<App />);
 
     const suggestionList = screen.queryByTestId("suggestion-list");
     expect(suggestionList).not.toBeInTheDocument();
@@ -77,7 +79,7 @@ describe("AutoComplete Component", () => {
   });
 
   it("updates the suggestion list based on user input", async () => {
-    render(<AutoComplete />);
+    render(<App />);
 
     const searchInput = screen.getByLabelText("search-input");
     const inputValue = "cle";
@@ -99,7 +101,7 @@ describe("AutoComplete Component", () => {
   });
 
   it("populates the input field when a suggestion item is clicked", async () => {
-    render(<AutoComplete />);
+    render(<App />);
     const inputValue = "cle";
     const searchInput = screen.getByLabelText(
       "search-input"
@@ -139,7 +141,7 @@ describe("AutoComplete Component", () => {
   });
 
   it("should return a div with no-options if no suggestion list is empty", async () => {
-    render(<AutoComplete />);
+    render(<App />);
     const inputValue = "les";
     const searchInput = screen.getByLabelText(
       "search-input"
@@ -157,7 +159,7 @@ describe("AutoComplete Component", () => {
   });
 
   it("moves selected suggestion move and down when using the keyboard arrow keys", async () => {
-    render(<AutoComplete />);
+    render(<App />);
     const inputValue = "c";
     const searchInput = screen.getByLabelText(
       "search-input"

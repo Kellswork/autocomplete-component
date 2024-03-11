@@ -1,23 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 import ResponseData from "../utils/type";
-import { FileteredData } from "../utils/api";
+import { fetchData } from "../utils/api";
 import { useDebounce } from "../utils/helpers";
 
 const AutoCompleteState = () => {
   const [searchText, setSearchText] = useState<string>("");
   const [suggestions, setSuggestions] = useState<ResponseData[]>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+  const [errMsg, setErrMsg] = useState<string>("");
   const [selectedSuggestion, setSelectedSuggestion] = useState<number>(-1);
   const inputRef = useRef<HTMLInputElement>(null);
-  const debouncedInputValue = useDebounce(searchText, 300)
+  const debouncedInputValue = useDebounce(searchText, 300);
 
   useEffect(() => {
     (async () => {
-      const filteredData = await FileteredData(debouncedInputValue);
-      if (!filteredData) return
-      
-      setSuggestions(filteredData);
-      return filteredData;
+      const fetchedData = await fetchData();
+      if (typeof fetchedData === "string") {
+        setErrMsg(fetchedData);
+        return;
+      }
+      setSuggestions(fetchedData);
+      return fetchedData;
     })();
 
     const handleFocusOut = (event: globalThis.MouseEvent) => {
@@ -48,7 +51,8 @@ const AutoCompleteState = () => {
     setShowSuggestions,
     selectedSuggestion,
     setSelectedSuggestion,
-    inputRef
+    inputRef,
+    errMsg
   };
 };
 

@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from "react";
+import { FC, MouseEvent, memo } from "react";
 import ResponseData from "../utils/type";
 import { highlightMatch } from "../utils/helpers";
 
@@ -8,6 +8,7 @@ interface Props {
   suggestions: ResponseData[];
   searchText: string;
   handleOnClick: (event: MouseEvent<HTMLLIElement>) => void;
+  errMsg: string;
 }
 
 const SuggestionList: FC<Props> = ({
@@ -16,8 +17,14 @@ const SuggestionList: FC<Props> = ({
   handleOnClick,
   selectedSuggestion,
   searchText,
+  errMsg,
 }) => {
   if (showSuggestions) {
+    
+    if (errMsg !== "") {
+     return <div className="no-options">{errMsg}</div>;
+    }
+
     return suggestions.length ? (
       <ul data-testid="suggestion-list" className="suggestions">
         {suggestions.map((suggestion, index) => (
@@ -34,8 +41,11 @@ const SuggestionList: FC<Props> = ({
         ))}
       </ul>
     ) : (
-      <div className="no-options" data-testid='no-options'>No options</div>
+      <div className="no-options" data-testid="no-options">
+        No options
+      </div>
     );
   } else return null;
 };
-export default SuggestionList;
+// export default SuggestionList;
+export const MemoisedSuggestionList = memo(SuggestionList);
