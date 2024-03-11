@@ -14,7 +14,7 @@ Some user experience features include;
 - uses JavaScript fetch API to fetch suggestion list from an API endpoint.
 - errors are handled for better user experience.
 
-- ## Technologies Used:
+## Technologies Used:
 - React Js
 - TypeScript
 - Jest
