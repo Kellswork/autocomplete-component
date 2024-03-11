@@ -1,6 +1,14 @@
 # AutoComplete Component
 
-I have created a private GitHub Repo for this Project.
+This is an auto-complete component. built with ReactJs and TypeScript
+
+Some user experience features include;
+
+- User input text highlights the matches it finds in the suggestion list.
+- User can use keyboard to navigate the lista and select their choices
+- Use React.memo, useMemo and useCallback to memoise component to decrease re-renders for smoother interactions.
+- uses JavaScript fetch API to fetch suggestion list from an API endpoint. 
+
 
 ## Gest Started
 
@@ -25,8 +33,3 @@ Achieved 70% test coverage
 
 - run `npm test -- --coverage` to see test coverage
 
-## Additional updates that can be done to improve the feature for production.
-
-Intergrate Continous intergration with Circle CI or Travis CI for testing in Production.
-
-Add Cache to store previous search result and reduce ftech request call.
