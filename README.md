@@ -1,4 +1,4 @@
-# AutoComplete Component
+# Auto-complete Component
 
 This is an auto-complete component. built with ReactJs and TypeScript
 
@@ -8,7 +8,6 @@ Some user experience features include;
 - User can use keyboard to navigate the lista and select their choices
 - Use React.memo, useMemo and useCallback to memoise component to decrease re-renders for smoother interactions.
 - uses JavaScript fetch API to fetch suggestion list from an API endpoint. 
-
 
 ## Gest Started
 
@@ -32,4 +31,3 @@ These instructions will get you a copy of the project up and running on your loc
 Achieved 70% test coverage
 
 - run `npm test -- --coverage` to see test coverage
-
