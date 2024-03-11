@@ -1,13 +1,18 @@
 # Auto-complete Component
 
-This is an auto-complete component. built with ReactJs and TypeScript
+Deployed on vercel - [autcomplete component](https://autocomplete-component-umber.vercel.app/).
+
+To interact with the deployed version click [here](https://autocomplete-component-umber.vercel.app/)
+
+This is an auto-complete component. built with ReactJs and TypeScript.
 
 Some user experience features include;
 
 - User input text highlights the matches it finds in the suggestion list.
 - User can use keyboard to navigate the lista and select their choices
 - Use React.memo, useMemo and useCallback to memoise component to decrease re-renders for smoother interactions.
-- uses JavaScript fetch API to fetch suggestion list from an API endpoint. 
+- uses JavaScript fetch API to fetch suggestion list from an API endpoint.
+- errors are handled for better user experience.
 
 ## Gest Started
 
